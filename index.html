@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Безплатен ипотечен калкулатор — месечна вноска, самоучастие, лихви и обща цена на кредита.">
+  <title>Ипотека — калкулатор на кредит</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Ипотека — начало">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 10.5 12 3l10 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span>ипотека<span class="brand-dot">.</span></span>
+      </a>
+      <div class="topbar-note"><span class="live-dot"></span> Калкулатор за планиране</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> ПО-ЯСЕН ПЪТ КЪМ ДОМА</div>
+          <h1>Голямата стъпка.<br><span>С ясни числа.</span></h1>
+          <p>Изчисли ориентировъчната си месечна вноска и виж как изглежда ипотеката ти — още преди срещата с банката.</p>
+        </div>
+        <div class="hero-badge" aria-label="Изчисленията са моментални">
+          <span class="badge-icon">↗</span>
+          <span><strong>Моментален резултат</strong><small>Промени условията по всяко време</small></span>
+        </div>
+      </section>
+
+      <section class="calculator-grid" aria-label="Ипотечен калкулатор">
+        <div class="panel input-panel">
+          <div class="panel-heading">
+            <div>
+              <span class="section-kicker">01 / ТВОИТЕ ПАРАМЕТРИ</span>
+              <h2>Настрой кредита</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">⌁</span>
+          </div>
+
+          <form id="mortgage-form">
+            <div class="field-group">
+              <div class="label-row">
+                <label for="property-price">Цена на имота</label>
+                <span class="field-hint">Покупна цена</span>
+              </div>
+              <div class="money-input">
+                <input id="property-price" name="propertyPrice" type="number" min="1000" max="100000000" step="1000" value="250000" inputmode="decimal" required>
+                <span class="currency">€</span>
+              </div>
+              <input class="range" id="price-range" type="range" min="30000" max="800000" step="5000" value="250000" aria-label="Цена на имота — плъзгач">
+              <div class="range-labels"><span>30 000 €</span><span>800 000 €</span></div>
+            </div>
+
+            <div class="field-group">
+              <div class="label-row">
+                <label for="apr">ГПР / годишен процент</label>
+                <span class="field-hint">По подразбиране 2,8%</span>
+              </div>
+              <div class="input-suffix">
+                <input id="apr" name="apr" type="number" min="0" max="30" step="0.05" value="2.8" inputmode="decimal" required>
+                <span>%</span>
+              </div>
+              <input class="range" id="apr-range" type="range" min="0" max="12" step="0.1" value="2.8" aria-label="Годишен процент — плъзгач">
+              <div class="range-labels"><span>0%</span><span>12%</span></div>
+            </div>
+
+            <div class="field-group">
+              <div class="label-row">
+                <label for="down-payment">Самоучастие</label>
+                <span class="field-hint">Част от цената на имота</span>
+              </div>
+              <div class="input-suffix">
+                <input id="down-payment" name="downPayment" type="number" min="0" max="99" step="1" value="20" inputmode="decimal" required>
+                <span>%</span>
+              </div>
+              <input class="range" id="down-range" type="range" min="0" max="70" step="1" value="20" aria-label="Самоучастие — плъзгач">
+              <div class="range-labels"><span>0%</span><span>70%</span></div>
+            </div>
+
+            <div class="field-group term-group">
+              <div class="label-row">
+                <label for="years">Срок на кредита</label>
+                <span class="field-hint">В години</span>
+              </div>
+              <div class="term-control">
+                <button type="button" class="stepper" id="years-minus" aria-label="Намали срока">−</button>
+                <div class="term-value"><input id="years" name="years" type="number" min="1" max="40" step="1" value="30" required><span>години</span></div>
+                <button type="button" class="stepper" id="years-plus" aria-label="Увеличи срока">+</button>
+              </div>
+              <input class="range" id="years-range" type="range" min="5" max="40" step="1" value="30" aria-label="Срок на кредита — плъзгач">
+              <div class="range-labels"><span>5 години</span><span>40 години</span></div>
+            </div>
+
+            <div class="assumption-note">
+              <span class="note-icon">i</span>
+              <p>Изчислението приема равни месечни вноски и постоянна лихва за целия срок.</p>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel results-panel">
+          <div class="result-topline">
+            <span class="section-kicker">02 / ТВОЯТ РЕЗУЛТАТ</span>
+            <span class="result-status"><span></span> Изчислено</span>
+          </div>
+          <div class="monthly-label">Ориентировъчна месечна вноска</div>
+          <div class="monthly-amount" id="monthly-payment">€ 821<span class="amount-decimal">,00</span></div>
+          <div class="monthly-caption">на месец · при избраните условия</div>
+
+          <div class="result-divider"></div>
+          <div class="metrics">
+            <div class="metric">
+              <span class="metric-icon down-icon">↓</span>
+              <div><span class="metric-label">Самоучастие</span><strong id="down-payment-amount">€ 50 000</strong><small id="down-payment-percent">20% от цената</small></div>
+            </div>
+            <div class="metric">
+              <span class="metric-icon loan-icon">↗</span>
+              <div><span class="metric-label">Размер на кредита</span><strong id="loan-amount">€ 200 000</strong><small>Сума за финансиране</small></div>
+            </div>
+            <div class="metric">
+              <span class="metric-icon interest-icon">％</span>
+              <div><span class="metric-label">Общо лихви</span><strong id="total-interest">€ 95 560</strong><small>За целия срок</small></div>
+            </div>
+            <div class="metric">
+              <span class="metric-icon total-icon">Σ</span>
+              <div><span class="metric-label">Общо към банката</span><strong id="total-paid">€ 295 560</strong><small>Главница + лихви</small></div>
+            </div>
+          </div>
+
+          <div class="cost-card">
+            <div class="cost-card-top"><span>Цена на имота</span><strong id="summary-price">€ 250 000</strong></div>
+            <div class="stacked-bar" aria-label="Разпределение между самоучастие и кредит">
+              <span class="bar-equity" id="equity-bar"></span><span class="bar-loan" id="loan-bar"></span>
+            </div>
+            <div class="bar-legend">
+              <span><i class="legend-dot equity-dot"></i> Самоучастие <strong id="legend-equity">20%</strong></span>
+              <span><i class="legend-dot loan-dot"></i> Кредит <strong id="legend-loan">80%</strong></span>
+            </div>
+          </div>
+          <button type="button" class="secondary-button" id="download-summary">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Изтегли обобщение
+          </button>
+        </div>
+      </section>
+
+      <section class="details-section">
+        <div class="section-title-row">
+          <div><span class="section-kicker">03 / ПОГЛЕД ОТБЛИЗО</span><h2>Как се разпределят парите</h2></div>
+          <span class="section-aside">За целия период на кредита</span>
+        </div>
+        <div class="details-grid">
+          <article class="panel breakdown-panel">
+            <h3>Обща цена на финансирането</h3>
+            <p class="card-subtitle">Сравнение на главница и лихви</p>
+            <div class="breakdown-total" id="breakdown-total">€ 295 560</div>
+            <div class="breakdown-bar"><span class="principal-segment" id="principal-segment"></span><span class="interest-segment" id="interest-segment"></span></div>
+            <div class="breakdown-rows">
+              <div><span><i class="legend-dot principal-dot"></i> Погасена главница</span><strong id="breakdown-principal">€ 200 000</strong></div>
+              <div><span><i class="legend-dot interest-dot"></i> Лихви</span><strong id="breakdown-interest">€ 95 560</strong></div>
+            </div>
+          </article>
+          <article class="panel timeline-panel">
+            <h3>Първа и последна вноска</h3>
+            <p class="card-subtitle">При непроменени условия</p>
+            <div class="timeline-item">
+              <span class="timeline-dot first"></span>
+              <div><span class="timeline-label">Първа месечна вноска</span><strong id="first-payment">€ 821</strong><small>Същата сума при фиксиран лихвен процент</small></div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+              <span class="timeline-dot last"></span>
+              <div><span class="timeline-label">Последна месечна вноска</span><strong id="last-payment">€ 821</strong><small id="payment-count">360 месечни вноски общо</small></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="disclaimer">
+        <span class="disclaimer-icon">!</span>
+        <div><strong>Важно да знаеш</strong><p>Това е ориентировъчна симулация, а не оферта от банка. Реалният ГПР може да включва такси, застраховки и други разходи, които не са включени тук. Лихвата може да е променлива, а банката определя одобрението и условията индивидуално. Предвиди и нотариални такси, местен данък, оценка на имота и други разходи по сделката.</p></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">⌂</span><span>ипотека<span class="brand-dot">.</span></span></a>
+      <span>Планирай информирано. Решавай спокойно.</span>
+      <span class="footer-year">© <span id="year"></span></span>
+    </footer>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
